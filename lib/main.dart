@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasbih_app/screens/home_screen.dart';
 import 'package:tasbih_app/screens/onboarding_screen.dart';
 import 'package:tasbih_app/screens/splash_screen.dart';
-void main() {
-  runApp(const TasbihApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool onboardingComplete = prefs.getBool('onboardingComplete') ?? false;
+  runApp(TasbihApp(onboardingComplete: onboardingComplete));
 }
 
 class TasbihApp extends StatelessWidget {
-  const TasbihApp({super.key});
+  final bool onboardingComplete;
+  TasbihApp({required this.onboardingComplete});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: onboardingComplete ? '/home' : '/onboarding',
       routes: {
-        '/':(context)=>SplashScreen(),
-        '/intro':(context)=>OnBoardingScreen(),
-        '/home':(context)=>HomeScreen(),
+        '/home': (context) => HomeScreen(),
+        '/onboarding': (context) => OnBoardingScreen(),
       },
     );
   }

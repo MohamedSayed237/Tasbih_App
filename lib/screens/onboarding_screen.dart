@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intro_screen_onboarding_flutter/introduction.dart';
 import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasbih_app/screens/home_screen.dart';
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({super.key});
@@ -27,9 +28,10 @@ class OnBoardingScreen extends StatelessWidget {
     return IntroScreenOnboarding(
       introductionList: list,
       backgroudColor: Color(0xc8e1e5),
-      onTapSkipButton: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      onTapSkipButton: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('onboardingComplete', false);
+        Navigator.of(context).pushReplacementNamed('/home');
       },
     );
   }
