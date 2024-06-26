@@ -3,23 +3,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasbih_app/screens/home_screen.dart';
 import 'package:tasbih_app/screens/onboarding_screen.dart';
 import 'package:tasbih_app/screens/splash_screen.dart';
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool onboardingComplete = prefs.getBool('onboardingComplete') ?? false;
-  runApp(TasbihApp(onboardingComplete: onboardingComplete));
+
+void main() async {
+  runApp(TasbihApp());
 }
 
 class TasbihApp extends StatelessWidget {
-  final bool onboardingComplete;
-  TasbihApp({required this.onboardingComplete});
+  TasbihApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: onboardingComplete ? '/home' : '/onboarding',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (context) => SplashScreen(),
         '/home': (context) => HomeScreen(),
         '/onboarding': (context) => OnBoardingScreen(),
       },
