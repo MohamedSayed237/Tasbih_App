@@ -19,10 +19,12 @@ class HomeScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0),
-              image: DecorationImage(
-                image: AssetImage('assets/images/sun.jpg'),
-                fit: BoxFit.cover,
-              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset('assets/images/goldilocks-three-bears-bed.png'),
+              ],
             ),
           ),
         ],
