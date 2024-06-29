@@ -5,6 +5,28 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("الاذكار"),
+        centerTitle: true,
+      ),
+      body: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+            width: 400,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.circular(12.0),
+              image: DecorationImage(
+                image: AssetImage('assets/images/sun.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasbih_app/screens/home_screen.dart';
 import 'package:tasbih_app/screens/onboarding_screen.dart';
 import 'package:tasbih_app/screens/splash_screen.dart';
@@ -15,6 +14,13 @@ class TasbihApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.dark,
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashScreen(),
